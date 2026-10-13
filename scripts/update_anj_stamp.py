@@ -1,6 +1,7 @@
 import re
 import ssl
 import sys
+import time
 import urllib.request
 from pathlib import Path
 
@@ -11,7 +12,15 @@ STAMP_RE = re.compile(r"[a-f0-9]{32}")
 
 
 def fetch_stamp() -> str:
-    req = urllib.request.Request(ANJ_JS, headers={"User-Agent": "Mozilla/5.0"})
+    url = f"{ANJ_JS}?t={int(time.time())}"
+    req = urllib.request.Request(
+        url,
+        headers={
+            "User-Agent": "Mozilla/5.0",
+            "Cache-Control": "no-cache",
+            "Pragma": "no-cache",
+        },
+    )
     raw = urllib.request.urlopen(req, context=ssl.create_default_context(), timeout=60).read()
     text = raw.decode("utf-8", "replace")
     text = re.sub(r"\\x([0-9a-fA-F]{2})", lambda m: chr(int(m.group(1), 16)), text)
