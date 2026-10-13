@@ -1,0 +1,20 @@
+{
+  "name": "Vodka Casino",
+  "short_name": "Vodkabet",
+  "start_url": "https://vodka-casino.de/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#333333",
+  "icons": [
+    {
+      "src": "/icon/logo192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/icon/logo512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
